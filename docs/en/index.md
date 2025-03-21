@@ -23,7 +23,7 @@ blog:
 
  # 设置作者信息
  author: Adream
- logo: /sun.jpg
+ logo: /moon.jpg
 
  # 文章数据分析卡片标题定义
  analysis: 
