@@ -1,6 +1,6 @@
 ---
 title: FastAPI入门(1)
-description: FastAPI核心概述：高性能异步Web框架详解衡量模型预测值与真实值之间差异的指标，用于指导模型的训练过程。
+description: FastAPI核心概述
 author: Adream
 cover: false
 hiddenCover: false

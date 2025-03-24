@@ -1,6 +1,6 @@
 ---
 title: FastAPI Entry(1)
-description: FastAPI Core Overview: A high-performance asynchronous web framework that details metrics that measure the difference between a model's predicted value and the true value, and is used to guide the model training process.
+description: FastAPI Core Overview
 author: Adream
 cover: false
 hiddenCover: false
