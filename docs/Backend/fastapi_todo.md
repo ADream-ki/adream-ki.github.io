@@ -1,11 +1,32 @@
-# FastAPI_ToDo实战
-## 8. 实战案例
+---
+title: FastAPI_ToDo实战
+description: FastAPI_ToDo实战
+author: Adream
+cover: false
+hiddenCover: false
+hidden: false
+readingTime: true
+comment: false
+date: 2023-02-28
+tags:
+  - FastAPI
+categories: 案例
 
-### 创建一个简单的TODO应用
+head:
+  - - link
+    - rel: stylesheet
+      href: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css
+---
+
+# FastAPI_ToDo 实战
+
+## 实战案例
+
+### 创建一个简单的 TODO 应用
 
 #### 步骤 1: 安装必要的库
 
-首先，你需要安装FastAPI和SQLAlchemy。如果你打算使用异步特性，还需要安装`databases`和`aiosqlite`。
+首先，你需要安装 FastAPI 和 SQLAlchemy。如果你打算使用异步特性，还需要安装`databases`和`aiosqlite`。
 
 ```bash
 pip install fastapi sqlalchemy databases aiosqlite uvicorn
@@ -13,7 +34,7 @@ pip install fastapi sqlalchemy databases aiosqlite uvicorn
 
 #### 步骤 2: 定义数据库模型
 
-创建一个Python文件`models.py`来定义你的数据库模型。
+创建一个 Python 文件`models.py`来定义你的数据库模型。
 
 ```python
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
@@ -35,7 +56,7 @@ class Todo(Base):
 
 #### 步骤 3: 初始化数据库
 
-为了使用这个模型和SQLite数据库，我们需要初始化数据库引擎和会话工厂。下面是如何使用SQLAlchemy的`create_engine`和`sessionmaker`来完成这个工作。
+为了使用这个模型和 SQLite 数据库，我们需要初始化数据库引擎和会话工厂。下面是如何使用 SQLAlchemy 的`create_engine`和`sessionmaker`来完成这个工作。
 
 ```python
 from sqlalchemy import create_engine
@@ -53,7 +74,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base.metadata.create_all(bind=engine)
 ```
 
-#### 步骤 4: 创建数据库CRUD操作
+#### 步骤 4: 创建数据库 CRUD 操作
 
 在一个新文件`crud.py`中，定义操作数据库的函数。
 
@@ -92,7 +113,7 @@ def delete_todo(db: Session, todo_id: int):
     return db_todo
 ```
 
-#### 步骤 5: 创建FastAPI应用
+#### 步骤 5: 创建 FastAPI 应用
 
 现在，创建主应用文件`main.py`。
 
@@ -140,7 +161,7 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db)):
     return {"detail": "Todo deleted"}
 ```
 
-#### 步骤 6: 运行FastAPI应用
+#### 步骤 6: 运行 FastAPI 应用
 
 最后，使用`uvicorn`来运行你的应用。
 
@@ -148,4 +169,4 @@ def delete_todo(todo_id: int, db: Session = Depends(get_db)):
 uvicorn main:app --reload
 ```
 
-现在，你的TODO应用应该已经运行起来了，并且支持创建、读取、更新和删除待办事项的操作。
+现在，你的 TODO 应用应该已经运行起来了，并且支持创建、读取、更新和删除待办事项的操作。
