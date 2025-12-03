@@ -1,0 +1,44 @@
+{
+  "timestamp": "2025-12-03T08:52:09.258Z",
+  "url": "https://adream.icu",
+  "results": {
+    "websiteLoading": {
+      "status": "passed",
+      "details": "网站加载成功，状态码: 200, 加载时间: 5172ms"
+    },
+    "homepageDisplay": {
+      "status": "passed",
+      "details": "页面标题: \"Adream小站\", 内容长度: 25164字符, 关键元素: Header(true), Main(false), Footer(true)"
+    },
+    "navigationMenu": {
+      "status": "passed",
+      "details": "找到 1 个导航链接，可点击: 1 个，示例: 首页"
+    },
+    "blogPage": {
+      "status": "passed",
+      "details": "路径: /blog, 找到 1 个文章元素，页面内容长度: 24414字符"
+    },
+    "searchFunction": {
+      "status": "warning",
+      "details": "未找到搜索框"
+    },
+    "filterSort": {
+      "status": "warning",
+      "details": "未找到筛选或排序功能"
+    },
+    "responsiveDesign": {
+      "status": "passed",
+      "details": "在 3/3 种屏幕尺寸下正常显示"
+    },
+    "darkMode": {
+      "status": "warning",
+      "details": "找到主题切换按钮但背景颜色未改变"
+    }
+  },
+  "summary": {
+    "passed": 5,
+    "failed": 0,
+    "warning": 3,
+    "total": 8
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "timestamp": "2025-12-03T08:57:39.186Z",
+  "url": "https://adream.icu",
+  "testResults": {
+    "websiteLoading": {
+      "status": "passed",
+      "details": "网站加载成功，状态码: 200, 加载时间: 3985ms",
+      "issues": []
+    },
+    "homepageDisplay": {
+      "status": "warning",
+      "details": "页面基本正常，但存在以下问题: 缺少最新文章区域, 缺少欢迎文本, 缺少探索文本, 缺少博客链接",
+      "issues": [
+        "缺少最新文章区域",
+        "缺少欢迎文本",
+        "缺少探索文本",
+        "缺少博客链接"
+      ]
+    },
+    "navigationMenu": {
+      "status": "warning",
+      "details": "导航菜单基本正常，但存在以下问题: 缺少导航项: 博客, 作品, 关于, 部分导航链接无法正常工作: 首页, 缺少移动端菜单按钮",
+      "issues": [
+        "缺少导航项: 博客, 作品, 关于",
+        "部分导航链接无法正常工作: 首页",
+        "缺少移动端菜单按钮"
+      ]
+    },
+    "blogPage": {
+      "status": "warning",
+      "details": "博客页面基本正常，但存在以下问题: 缺少博客页面标题, 缺少副标题, 缺少搜索输入框, 缺少筛选按钮, 缺少排序下拉菜单, 缺少视图模式切换, 既没有文章卡片也没有\"暂无文章\"提示",
+      "issues": [
+        "缺少博客页面标题",
+        "缺少副标题",
+        "缺少搜索输入框",
+        "缺少筛选按钮",
+        "缺少排序下拉菜单",
+        "缺少视图模式切换",
+        "既没有文章卡片也没有\"暂无文章\"提示"
+      ]
+    },
+    "searchFunction": {
+      "status": "failed",
+      "details": "未找到搜索输入框",
+      "issues": [
+        "搜索输入框不存在"
+      ]
+    },
+    "filterSort": {
+      "status": "failed",
+      "details": "筛选和排序功能不可用，问题: 缺少筛选按钮, 缺少排序下拉菜单, 缺少视图模式切换按钮",
+      "issues": [
+        "缺少筛选按钮",
+        "缺少排序下拉菜单",
+        "缺少视图模式切换按钮"
+      ]
+    },
+    "responsiveDesign": {
+      "status": "failed",
+      "details": "响应式设计有严重问题，仅在 1/3 种屏幕尺寸下正常",
+      "issues": [
+        "Tablet 视图有问题",
+        "Mobile 视图有问题"
+      ]
+    },
+    "darkMode": {
+      "status": "passed",
+      "details": "深色模式切换功能正常，能够正确改变页面主题",
+      "issues": []
+    }
+  },
+  "summary": {
+    "passed": 2,
+    "failed": 3,
+    "warning": 3,
+    "total": 8
+  }
+}

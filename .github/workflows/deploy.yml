@@ -1,4 +1,4 @@
-name: Deploy Next.js Blog (Multi-Branch)
+name: Deploy Next.js Blog (Four-Branch Architecture)
 
 on:
   push:
