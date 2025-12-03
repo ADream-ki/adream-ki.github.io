@@ -1,69 +1,209 @@
-<h1 align="center"> VitePress @sugarat/theme </h1>
+# 🌸 Adream 小站
 
-<p align="center">
-简约风的 <a href="https://theme.sugarat.top"  target="_blank"target="_blank">VitePress 博客主题</a> 示例运行项目。
-</p>
+一个基于 Next.js 的二次元风格个人博客，采用四分支架构实现代码与内容的完美分离。
 
-<p align="center">
-    <a href="https://atqq.github.io/vitepress-blog-sugar-template/" target="_blank">GitHub Pages Demo</a>
-</p>
+## ✨ 特性
 
-## Usage
+- 🎨 **二次元动漫风格** - 清新温暖的视觉设计
+- 🌓 **深色模式** - 完美支持明暗主题切换
+- 📱 **响应式设计** - 完美适配各种设备
+- ⚡ **极速加载** - 基于 Next.js 静态生成
+- 🎯 **四分支架构** - 代码与内容完全分离
+- 🔍 **SEO 优化** - 完整的元数据配置
 
-先安装 `pnpm`
+## 🏗️ 架构设计
 
-```sh
-npm i -g pnpm
+本项目采用创新的**四分支架构**：
+
+| 分支 | 作用 | 内容 | 维护方式 |
+|------|------|------|----------|
+| `main` | 源码分支 | Next.js 代码、组件、样式 | 开发维护 |
+| `post` | 文章分支 | Markdown 文章、about.md | 写作维护 |
+| `work` | 作品分支 | projects.json 作品数据 | 项目维护 |
+| `release` | 部署分支 | 编译后的静态文件 | CI 自动生成 |
+
+## 🚀 快速开始
+
+### 1. 克隆项目
+
+```bash
+git clone https://github.com/adream-ki/adream-ki.github.io.git
+cd adream-ki.github.io
 ```
 
-安装依赖
+### 2. 安装依赖
 
-```sh
-pnpm install
+```bash
+npm install
 ```
 
-开发启动
+### 3. 本地开发
 
-```sh
-pnpm dev
+由于内容存储在独立分支，本地开发时需要手动创建测试数据：
+
+```bash
+# 创建测试文章目录
+mkdir posts
+echo '---
+title: "测试文章"
+date: "2024-01-01"
+description: "这是一篇测试文章"
+tags: ["测试"]
+---
+
+# 测试内容' > posts/test.md
+
+# 创建测试项目数据
+mkdir data
+echo '[
+  {
+    "title": "示例项目",
+    "description": "这是一个示例项目",
+    "tags": ["Next.js", "React"],
+    "link": "https://github.com"
+  }
+]' > data/projects.json
 ```
 
-构建
+然后启动开发服务器：
 
-```sh
-pnpm build
+```bash
+npm run dev
 ```
 
-预览产物
+访问 http://localhost:3000
 
-```sh
-pnpm serve
+### 4. 构建部署
+
+```bash
+npm run build
 ```
 
-## Github Pages 部署
+## 📝 内容管理
 
-① Github Pages 开启 Git Actions 部署支持
+### 发布文章
 
-![](https://img.cdn.sugarat.top/mdImg/sugar/8a2454c628d0e2abcc7a0451ddd7d2dc)
+1. 切换到 `post` 分支
+2. 在分支根目录创建 `.md` 或 `.mdx` 文件
+3. 添加 Front Matter：
 
-② 复制文件 `.github/workflows/deploy.yml` 到自己的项目相同目录下
+```markdown
+---
+title: "文章标题"
+date: "2024-01-01"
+description: "文章简介"
+tags: ["标签1", "标签2"]
+category: "分类名称"
+---
 
-示例项目已包含，可以直接进行下一步
-
-③ 修改 `docs/.vitepress/config.mts` 里的构建配置
-
-**如果项目名已经为 name.github.io 域名，则不需要修改，保持默认值 `/` 即可**
-
-`base` 改为 `"/仓库名/"` 即可
-
-```ts
-// 省略无关代码
-const base = '/vitepress-blog-sugar-template/'
-export default defineConfig({
-  base,
-})
+# 文章内容
 ```
 
-④ 推送 `main` 分支即可
+4. 提交并推送，CI 会自动重新构建部署
 
-需要进一步修改部署和构建配置，详见`deploy.yml` 文件。
+### 更新作品
+
+1. 切换到 `work` 分支
+2. 编辑 `projects.json` 文件：
+
+```json
+[
+  {
+    "title": "项目名称",
+    "description": "项目描述",
+    "tags": ["技术1", "技术2"],
+    "github": "https://github.com/...",
+    "demo": "https://demo-url.com",
+    "image": "图片URL(可选)"
+  }
+]
+```
+
+3. 提交并推送
+
+## 🔧 技术栈
+
+- **框架**: Next.js 14 (App Router)
+- **样式**: Tailwind CSS
+- **动画**: Framer Motion
+- **主题**: next-themes
+- **图标**: Lucide React
+- **Markdown**: gray-matter + next-mdx-remote
+- **部署**: GitHub Pages + GitHub Actions
+
+## 📦 项目结构
+
+```
+adream-ki.github.io/
+├── src/
+│   ├── app/                 # 页面路由
+│   │   ├── blog/            # 博客页面
+│   │   ├── projects/        # 作品页面
+│   │   ├── about/           # 关于页面
+│   │   ├── layout.tsx       # 根布局
+│   │   └── page.tsx         # 首页
+│   ├── components/          # React 组件
+│   │   ├── layout/          # 布局组件
+│   │   ├── blog/            # 博客组件
+│   │   └── home/            # 首页组件
+│   └── lib/                 # 工具函数
+│       ├── posts.ts         # 文章读取
+│       └── projects.ts      # 项目读取
+├── .github/
+│   └── workflows/
+│       └── deploy.yml       # CI/CD 配置
+├── package.json
+├── tailwind.config.ts       # Tailwind 配置
+├── next.config.mjs          # Next.js 配置
+└── tsconfig.json            # TypeScript 配置
+```
+
+## 🎨 自定义配置
+
+### 修改主题色
+
+编辑 `tailwind.config.ts` 中的颜色配置：
+
+```typescript
+colors: {
+  primary: { ... },  // 主色调
+  accent: { ... },   // 强调色
+}
+```
+
+### 修改网站信息
+
+编辑 `src/app/layout.tsx` 中的 metadata：
+
+```typescript
+export const metadata: Metadata = {
+  title: "你的站点名称",
+  description: "你的站点描述",
+  // ...
+};
+```
+
+### 修改导航菜单
+
+编辑 `src/components/layout/Header.tsx` 中的 navItems：
+
+```typescript
+const navItems = [
+  { name: '首页', href: '/' },
+  // 添加更多菜单项...
+];
+```
+
+## 📄 License
+
+MIT License © 2024 Adream
+
+## 🔗 链接
+
+- [在线预览](https://adream-ki.github.io)
+- [博客文章](https://adream-ki.github.io/blog)
+- [项目作品](https://adream-ki.github.io/projects)
+
+---
+
+⭐ 如果这个项目对你有帮助，欢迎 Star！

@@ -1,99 +1,62 @@
-name: Deploy Pages
+name: Deploy Next.js Blog (Multi-Branch)
 
-# 触发条件，push到main分支或者pull request到main分支
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main   # Code changes trigger rebuild
+      - post   # New articles trigger rebuild
+      - work   # Project updates trigger rebuild
+  workflow_dispatch: # Manual trigger
 
-  # 支持手动在工作流上触发
-  workflow_dispatch:
-
-# 设置时区
-env:
-  TZ: Asia/Shanghai
-
-# 权限设置
 permissions:
-  # 允许读取仓库内容的权限。
-  contents: read
-  # 允许写入 GitHub Pages 的权限。
-  pages: write
-  # 允许写入 id-token 的权限。
-  id-token: write
+  contents: write
 
-# 并发控制配置
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
-# 定义执行任务
 jobs:
-  # 构建任务
-  build:
-
+  build-and-deploy:
     runs-on: ubuntu-latest
 
-    # node v20 运行
-    strategy:
-      matrix:
-        node-version: [20]
-
     steps:
-      # 拉取代码
-      - name: Checkout
+      # Step 1: Checkout main branch (source code)
+      - name: Checkout Source Code (main)
         uses: actions/checkout@v4
         with:
-          # 保留 Git 信息
-          fetch-depth: 0
+          ref: main
 
-      # 设置使用 Node.js 版本
-      - name: Use Node.js ${{ matrix.node-version }}
+      # Step 2: Checkout post branch (articles -> ./posts)
+      - name: Checkout Posts (post -> ./posts)
+        uses: actions/checkout@v4
+        with:
+          ref: post
+          path: posts
+
+      # Step 3: Checkout work branch (projects -> ./data)
+      - name: Checkout Projects (work -> ./data)
+        uses: actions/checkout@v4
+        with:
+          ref: work
+          path: data
+
+      # Step 4: Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "20"
+          cache: 'npm'
 
-      # 使用 最新的 PNPM
-      # 你也可以指定为具体的版本
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
+      # Step 5: Install dependencies
+      - name: Install Dependencies
+        run: npm ci
+
+      # Step 6: Build Next.js static site
+      - name: Build Static Site
+        run: npm run build
+
+      # Step 7: Deploy to release branch
+      - name: Deploy to Release Branch
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          version: latest
-          # version: 9
-          run_install: false
-
-        # 安装依赖
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-        # 锁定依赖版本
-        # run: pnpm install --frozen-lockfile
-
-        # 构建项目
-      - name: Build blog project
-        run: |
-          echo ${{ github.workspace }}
-          pnpm build
-
-        # 资源拷贝
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./docs/.vitepress/dist
-          destination: ./_site
-
-        # 上传 _site 的资源，用于后续部署
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-
-  # 部署任务
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          branch: release
+          folder: out
+          clean: true
+          single-commit: true
+          commit-message: "🚀 Deploy: ${{ github.event.head_commit.message }}"
