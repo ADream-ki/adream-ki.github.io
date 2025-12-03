@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Adream 小站",
+    "description": "基于 Next.js 的个人博客系统，采用四分支架构，实现代码与内容的完美分离",
+    "tags": [
+      "Next.js",
+      "React",
+      "Tailwind CSS"
+    ],
+    "github": "https://github.com/adream-ki/adream-ki.github.io",
+    "demo": "https://adream-ki.github.io"
+  },
+  {
+    "title": "示例项目 A",
+    "description": "这是一个示例项目，展示如何使用现代化的技术栈构建应用",
+    "tags": [
+      "TypeScript",
+      "Node.js",
+      "MongoDB"
+    ],
+    "github": "https://github.com/example/project-a"
+  },
+  {
+    "title": "示例项目 B",
+    "description": "另一个有趣的项目，专注于用户体验和性能优化",
+    "tags": [
+      "Vue",
+      "Vite",
+      "Pinia"
+    ],
+    "demo": "https://example.com/project-b"
+  }
+]
